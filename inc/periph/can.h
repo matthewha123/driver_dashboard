@@ -1,0 +1,42 @@
+#ifndef __CAN_H
+#define __CAN_H
+
+#include "common.h"
+#include "canlib_dash.h"
+#include "uart.h"
+#include <stdbool.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+extern CANlib_critical_DashRequest_T dash_request;
+extern CANlib_critical_Controls_Settings1_T controls_settings1;
+extern CANlib_critical_Controls_Settings2_T controls_settings2;
+extern CANlib_critical_LaunchControlSettings_T launch_control_settings;
+
+extern CANlib_critical_VCUState_state_T vcu_state_old;
+extern CANlib_critical_VCUDashInfo_imd_T imd_fault_old;
+extern CANlib_critical_VCUDashInfo_bms_T bms_fault_old;
+extern CANlib_critical_VCUDashInfo_contactor_mismatch_T contactor_mismatch_fault_old;
+extern CANlib_critical_VCUDashInfo_bspd_T bspd_fault_old;
+extern CANlib_critical_VCUDashInfo_throttle_implausibility_T throttle_implausibility_fault_old;
+extern CANlib_critical_VCUDashInfo_sensor_implausibility_T sensor_implausibility_fault_old;
+extern CANlib_critical_VCUDashInfo_brake_throttle_conflict_T brake_throttle_conflict_fault_old;
+extern CANlib_critical_VCUDashInfo_tsms_T tsms_fault_old;
+extern CANlib_critical_VCUDashInfo_shutdown_loop_latch_T shutdown_loop_latch_fault_old;
+extern CANlib_critical_VCUDashInfo_hvlv_interlock_T hvlv_interlock_fault_old;
+extern CANlib_critical_VCUDashInfo_heartbeat_T heartbeat_fault_old;
+extern CANlib_critical_VCUDashInfo_leak_detect_T leak_detect_fault_old;
+extern CANlib_critical_Incrementing_Number_T inc_num;
+
+HAL_StatusTypeDef can_init(void);
+void can_transmit(void);
+void can_receive(void);
+void mock_tick_can_vals(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // __CAN_H
